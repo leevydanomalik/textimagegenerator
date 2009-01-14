@@ -65,5 +65,7 @@
                 <attribute name="Implementation-Version" value="${app.version}"/>
             </manifest>
         </jar>
+
+        <zip zipfile="${dist.home}/api-docs.zip" basedir="${dist.home}/docs/api"/>
     </target>
 </project>
