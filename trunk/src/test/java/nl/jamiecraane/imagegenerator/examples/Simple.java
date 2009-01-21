@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import nl.jamiecraane.imagegenerator.Margin;
 import nl.jamiecraane.imagegenerator.TextImage;
 import nl.jamiecraane.imagegenerator.TextImageCallback;
+import nl.jamiecraane.imagegenerator.Style;
 import nl.jamiecraane.imagegenerator.impl.TextImageImpl;
 
 /**
@@ -21,7 +22,7 @@ public class Simple {
 		// 1. create a new TextImageImpl with a size of 300x300 pixels
 		// and a left and top margin of 5 pixels. The default font is SansSerif,
 		// PLAIN,12
-		TextImage textImage = new TextImageImpl(300, 300, new Margin(5, 5));
+		TextImage textImage = new TextImageImpl(300, 300, new Margin(0, 0));
 
 		// 2. These methods add text and a newline
 		textImage.writeLine("This is a simple example");
@@ -31,7 +32,7 @@ public class Simple {
 		textImage.newLine().newLine();
 
 		// 4. Add other text
-		textImage.write("Hello world!");
+		textImage.useFontStyle(Style.UNDERLINED).write("Hello world!");
 
 		// 5. Write the image as a png to an outputstream
 		FileOutputStream fos = new FileOutputStream(new File("example1.png"));

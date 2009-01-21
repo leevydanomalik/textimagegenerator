@@ -25,7 +25,7 @@ import nl.jamiecraane.imagegenerator.*;
  * The {@link GreedyTextWrapper} is used as the default text wrapping algorithm.
  * <p/>
  * Note: At the moment text wrapping is only implemented for the write methods, not the writeLine methods.
- * The default text aligment is RIGHT.
+ * The default text aligment is Alignment.LEFT.
  * <p/>
  * This class is NOT threadsafe.
  */
@@ -135,7 +135,7 @@ public class TextImageImpl implements TextImage {
 
     private void applyStyle(FontMetrics fm, String line) {
         if (this.style.equals(Style.UNDERLINED)) {
-            int y = this.yPos + fm.getHeight() + fm.getDescent() - 1;
+            int y = this.yPos + fm.getAscent();
             this.graphics.drawLine(this.xPos - fm.stringWidth(line), y, this.xPos, y);
         }
     }
@@ -151,7 +151,7 @@ public class TextImageImpl implements TextImage {
         int linewidth = this.width - this.margin.getLeft() - this.margin.getRight();
         List<DrawableText> words = this.alignments.get(this.alignment).align(text, fm, linewidth);
         for (DrawableText word : words) {
-            graphics.drawString(word.getText(), this.xPos + word.getXPos(), this.yPos + fm.getHeight());
+             graphics.drawString(word.getText(), this.xPos + word.getXPos(), this.yPos + this.getFontMetrics().getAscent() - this.getFontMetrics().getDescent());
         }
         this.xPos = this.xPos + fm.stringWidth(text);
     }
@@ -168,7 +168,7 @@ public class TextImageImpl implements TextImage {
     }
 
     public TextImage writeLine(String text) {
-        graphics.drawString(text, this.xPos, this.yPos + this.getFontMetrics().getHeight());
+        graphics.drawString(text, this.xPos, this.yPos + this.getFontMetrics().getAscent() - this.getFontMetrics().getDescent());
         this.newLine();
 
         return this;
@@ -232,7 +232,7 @@ public class TextImageImpl implements TextImage {
         int iWidth = ((BufferedImage) image).getWidth();
         int iHeight = ((BufferedImage) image).getHeight();
 
-        int y = this.yPos + getFontMetrics().getHeight() - iHeight;
+        int y = this.yPos + getFontMetrics().getAscent() - iHeight;
 
         this.graphics.drawImage(image, this.xPos, y, null);
         this.xPos = this.xPos + iWidth;
@@ -254,7 +254,7 @@ public class TextImageImpl implements TextImage {
     public TextImage writeLine(Image image) {
         int iHeight = ((BufferedImage) image).getHeight();
 
-        int y = this.yPos + getFontMetrics().getHeight() - iHeight;
+        int y = this.yPos + getFontMetrics().getAscent() - iHeight;
 
         this.graphics.drawImage(image, this.xPos, y, null);
         this.newLine();

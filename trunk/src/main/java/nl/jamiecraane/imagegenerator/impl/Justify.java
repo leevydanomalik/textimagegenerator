@@ -28,6 +28,7 @@ public class Justify extends AbstractAlign implements Align {
 
         int glue = 0;
 
+        // TODO Modify algorithm which takes into account rounding issues
         if (words.length > 0) {
             glue = Math.round((float) spaceLeft / (words.length - 1));
         }
