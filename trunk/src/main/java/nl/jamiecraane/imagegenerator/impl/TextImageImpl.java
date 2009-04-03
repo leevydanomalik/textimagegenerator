@@ -116,7 +116,6 @@ public class TextImageImpl implements TextImage {
 
     public TextImage write(String text) {
         FontMetrics fm = getFontMetrics();
-
         if (this.wrap) {
             int lineWidth = this.width - this.margin.getLeft() - this.margin.getRight();
             List<String> lines = this.wrapper.doWrap(text, lineWidth, fm);
