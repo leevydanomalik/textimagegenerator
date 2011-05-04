@@ -49,14 +49,7 @@ public class LoremIpsumWatermarked {
 		// Use a red color
 		waterMarked.useFontStyle(Style.PLAIN).useColor(Color.RED).writeLine("including versions of Lorem Ipsum.");
 
-		// 5. Write the image as a png to an outputstream
-		FileOutputStream fos = new FileOutputStream(new File("loremipsum-watermarked.png"));
-		try {
-			waterMarked.createPng(fos);
-		} finally {
-			if (fos != null) {
-				fos.close();
-			}
-		}
+		// 5. Write the image as a png to a file
+        waterMarked.createPng(new File("loremipsum-watermarked.png"));
 	}
 }

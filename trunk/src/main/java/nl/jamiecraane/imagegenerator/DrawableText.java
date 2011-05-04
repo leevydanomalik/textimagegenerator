@@ -7,7 +7,7 @@ public final class DrawableText {
     private final String text;
     private final int xPos;
 
-    public DrawableText(String text, int xPos) {
+    public DrawableText(final String text, final int xPos) {
         this.text = text;
         this.xPos = xPos;
     }

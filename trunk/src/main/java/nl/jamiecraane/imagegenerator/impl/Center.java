@@ -14,8 +14,8 @@ import java.awt.*;
  * Date: 22-dec-2008
  * Time: 12:37:15
  */
-public class Center extends AbstractAlign implements Align {
-    public List<DrawableText> align(String text, FontMetrics fm, int linewidth) {
+public final class Center extends AbstractAlign implements Align {
+    public List<DrawableText> align(final String text, final FontMetrics fm, final int linewidth) {
         List<DrawableText> result = new ArrayList<DrawableText>();
 
         String[] words = super.getWords(text);

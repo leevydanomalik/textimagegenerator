@@ -44,13 +44,6 @@ public class Advanced {
             }
         });
 
-        FileOutputStream fos = new FileOutputStream(new File("advanced.png"));
-		try {
-			textImage.createPng(fos);
-		} finally {
-			if (fos != null) {
-				fos.close();
-			}
-		}
+        textImage.createPng(new File("advanced.png"));
     }
 }

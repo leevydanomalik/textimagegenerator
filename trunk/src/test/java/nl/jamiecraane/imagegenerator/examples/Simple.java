@@ -34,14 +34,7 @@ public class Simple {
 		// 4. Add other text
 		textImage.useFontStyle(Style.UNDERLINED).write("Hello world!");
 
-		// 5. Write the image as a png to an outputstream
-		FileOutputStream fos = new FileOutputStream(new File("example1.png"));
-		try {
-			textImage.createPng(fos);
-		} finally {
-			if (fos != null) {
-				fos.close();
-			}
-		}
+		// 5. Write the image as a png to a file
+        textImage.createPng(new File("example1.png"));
 	}
 }

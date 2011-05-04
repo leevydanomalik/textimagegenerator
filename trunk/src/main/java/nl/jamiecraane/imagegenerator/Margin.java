@@ -2,23 +2,21 @@ package nl.jamiecraane.imagegenerator;
 
 /**
  * top, left, right and bottom margins in pixels.
+ *
+ * Immutable.
  */
-public class Margin {
+public final class Margin {
     private int left = 0;
     private int right = 0;
     private int top = 0;
     private int bottom = 0;
 
-    public Margin() {
-
-    }
-
-    public Margin(int left, int top) {
+    public Margin(final int left, final int top) {
         this.left = left;
         this.top = top;
     }
 
-    public Margin(int left, int top, int right, int bottom) {
+    public Margin(final int left, final int top, final int right, final int bottom) {
         this.left = left;
         this.right = right;
         this.top = top;

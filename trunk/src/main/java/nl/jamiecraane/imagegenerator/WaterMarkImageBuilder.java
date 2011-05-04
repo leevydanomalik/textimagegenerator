@@ -7,7 +7,7 @@ import nl.jamiecraane.imagegenerator.impl.TextImageImpl;
 /**
  * Builder for creating image instances with a watermark.
  */
-public class WaterMarkImageBuilder {
+public final class WaterMarkImageBuilder {
 	private final int width;
 
 	private final int heigth;
@@ -20,7 +20,11 @@ public class WaterMarkImageBuilder {
      * @param heigth The height of the image returned by this builder.
      * @param margin The margins used of the image returned by this builder.
      */
-    public WaterMarkImageBuilder(int width, int heigth, Margin margin) {
+    public WaterMarkImageBuilder(final int width, final int heigth, final Margin margin) {
+        if (margin == null) {
+            throw new IllegalArgumentException("The margin may not be null.");
+        }
+
 		this.width = width;
 		this.heigth = heigth;
 		this.margin = margin;
@@ -32,7 +36,7 @@ public class WaterMarkImageBuilder {
 	 * @param waterMark The watermark used for the image.
 	 * @return Watermarked image.
 	 */
-	public TextImage build(BufferedImage waterMark) {
+	public TextImage build(final BufferedImage waterMark) {
 		TextImageImpl image = new TextImageImpl(width, heigth);
 
 		for (int x = 0; x < this.width; x += waterMark.getWidth()) {
