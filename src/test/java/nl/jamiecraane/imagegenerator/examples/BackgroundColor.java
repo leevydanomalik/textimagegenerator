@@ -46,14 +46,7 @@ public class BackgroundColor {
 		// 4. Add other text
 		textImage.useFontStyle(Style.UNDERLINED).write("Hello world!");
 
-		// 5. Write the image as a png to an outputstream
-		FileOutputStream fos = new FileOutputStream(new File("background-color.png"));
-		try {
-			textImage.createPng(fos);
-		} finally {
-			if (fos != null) {
-				fos.close();
-			}
-		}
+        // 5. Write the image as a png to a file
+        textImage.createJpg(new File("background-color.jpg"));
     }
 }

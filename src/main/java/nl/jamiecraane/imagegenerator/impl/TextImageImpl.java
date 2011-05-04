@@ -1,22 +1,23 @@
 package nl.jamiecraane.imagegenerator.impl;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics2D;
-import java.awt.Image;
+import nl.jamiecraane.imagegenerator.*;
+import nl.jamiecraane.imagegenerator.utils.Validate;
+
+import javax.imageio.IIOImage;
+import javax.imageio.ImageIO;
+import javax.imageio.ImageWriteParam;
+import javax.imageio.ImageWriter;
+import javax.imageio.stream.FileImageOutputStream;
+import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.List;
-import java.util.StringTokenizer;
-import java.util.Map;
 import java.util.HashMap;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-
-import nl.jamiecraane.imagegenerator.*;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Implementation of the {@link TextImage} interface. The default font is
@@ -29,7 +30,10 @@ import nl.jamiecraane.imagegenerator.*;
  * <p/>
  * This class is NOT threadsafe.
  */
-public class TextImageImpl implements TextImage {
+public final class TextImageImpl implements TextImage {
+    private static final String JPEG = "jpeg";
+    private static final int MAX_COMPRESSION = 1;
+    private static final String PNG = "png";
     private final int width;
 
     private final int height;
@@ -42,7 +46,7 @@ public class TextImageImpl implements TextImage {
 
     private Alignment alignment = Alignment.LEFT;
 
-    private Margin margin = new Margin();
+    private Margin margin = new Margin(0, 0, 0, 0);
 
     private boolean wrap = false;
 
@@ -67,7 +71,10 @@ public class TextImageImpl implements TextImage {
         alignments.put(Alignment.JUSTIFY, new Justify());
     }
 
-    public TextImageImpl(int width, int height) {
+    /**
+     * {@inheritDoc}
+     */
+    public TextImageImpl(final int width, final int height) {
         this.width = width;
         this.height = height;
         this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
@@ -79,42 +86,69 @@ public class TextImageImpl implements TextImage {
         graphics.clearRect(0, 0, width, height);
     }
 
-    public TextImageImpl(int width, int height, Margin margin) {
+    /**
+     * {@inheritDoc}
+     */
+    public TextImageImpl(final int width, final int height, final Margin margin) {
         this(width, height);
+
+        Validate.notNull(margin, "The margin may not be null.");
+
         this.margin = margin;
         this.yPos = this.margin.getTop();
         this.xPos = this.margin.getLeft();
     }
 
-    public TextImage useTextWrapper(TextWrapper wrapper) {
+    /**
+     * {@inheritDoc}
+     */
+    public TextImage useTextWrapper(final TextWrapper wrapper) {
+        Validate.notNull(wrapper, "The wrapper may not be null.");
+
         this.wrapper = wrapper;
         return this;
     }
 
-    public TextImage performAction(TextImageCallback callback) {
+    /**
+     * {@inheritDoc}
+     */
+    public TextImage performAction(final TextImageCallback callback) {
+        Validate.notNull(callback, "The callback may not be null.");
+
         callback.doWithGraphics(this.graphics);
         return this;
     }
 
-    public TextImage addHSpace(int space) {
+    /**
+     * {@inheritDoc}
+     */
+    public TextImage addHSpace(final int space) {
         this.xPos += space;
         return this;
     }
 
-    public TextImage addVSpace(int space) {
+    /**
+     * {@inheritDoc}
+     */
+    public TextImage addVSpace(final int space) {
         this.yPos += space;
         return this;
     }
 
     /**
-     * @see TextImage#wrap(boolean)
+     * {@inheritDoc}
      */
-    public TextImage wrap(boolean enable) {
+    public TextImage wrap(final boolean enable) {
         this.wrap = enable;
         return this;
     }
 
-    public TextImage write(String text) {
+    /**
+     * {@inheritDoc}
+     */
+    public TextImage write(final String text) {
+        Validate.notNull(text, "The text may not be null.");
+
         FontMetrics fm = getFontMetrics();
         if (this.wrap) {
             int lineWidth = this.width - this.margin.getLeft() - this.margin.getRight();
@@ -132,7 +166,7 @@ public class TextImageImpl implements TextImage {
         return this;
     }
 
-    private void applyStyle(FontMetrics fm, String line) {
+    private void applyStyle(final FontMetrics fm, final String line) {
         if (this.style.equals(Style.UNDERLINED)) {
             int y = this.yPos + fm.getAscent();
             this.graphics.drawLine(this.xPos - fm.stringWidth(line), y, this.xPos, y);
@@ -146,16 +180,21 @@ public class TextImageImpl implements TextImage {
      *             the font.
      * @param text The text to draw.
      */
-    private void writeText(FontMetrics fm, String text) {
+    private void writeText(final FontMetrics fm, final String text) {
         int linewidth = this.width - this.margin.getLeft() - this.margin.getRight();
         List<DrawableText> words = this.alignments.get(this.alignment).align(text, fm, linewidth);
         for (DrawableText word : words) {
-             graphics.drawString(word.getText(), this.xPos + word.getXPos(), this.yPos + this.getFontMetrics().getAscent() - this.getFontMetrics().getDescent());
+            graphics.drawString(word.getText(), this.xPos + word.getXPos(), this.yPos + this.getFontMetrics().getAscent() - this.getFontMetrics().getDescent());
         }
         this.xPos = this.xPos + fm.stringWidth(text);
     }
 
-    public TextImage write(String text, int yOffset) {
+    /**
+     * {@inheritDoc}
+     */
+    public TextImage write(final String text, final int yOffset) {
+        Validate.notNull(text, "The text may not be null.");
+
         int oldY = this.yPos;
         this.yPos += yOffset;
         this.write(text);
@@ -166,7 +205,10 @@ public class TextImageImpl implements TextImage {
         return this;
     }
 
-    public TextImage writeLine(String text) {
+    /**
+     * {@inheritDoc}
+     */
+    public TextImage writeLine(final String text) {
         graphics.drawString(text, this.xPos, this.yPos + this.getFontMetrics().getAscent() - this.getFontMetrics().getDescent());
         this.newLine();
 
@@ -177,6 +219,9 @@ public class TextImageImpl implements TextImage {
         return this.graphics.getFontMetrics(this.previouslyUsedFont);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public TextImage newLine() {
         this.yPos = this.yPos + getFontMetrics().getHeight();
         this.xPos = this.margin.getLeft();
@@ -184,40 +229,65 @@ public class TextImageImpl implements TextImage {
         return this;
     }
 
-    public TextImage newLine(int times) {
+    /**
+     * {@inheritDoc}
+     */
+    public TextImage newLine(final int times) {
         this.yPos = this.yPos + (times * getFontMetrics().getHeight());
         this.xPos = this.margin.getLeft();
 
         return this;
     }
 
-    public TextImage useFont(Font font) {
+    /**
+     * {@inheritDoc}
+     */
+    public TextImage useFont(final Font font) {
+        Validate.notNull(font, "The font may not be null.");
+
         this.previouslyUsedFont = font;
-
         this.graphics.setFont(font);
-
         return this;
     }
 
-    public TextImage setTextAligment(Alignment alignment) {
+    /**
+     * {@inheritDoc}
+     */
+    public TextImage setTextAligment(final Alignment alignment) {
+        Validate.notNull(alignment, "The alignment may not be null.");
+
         this.alignment = alignment;
         return this;
     }
 
-    public TextImage useFontStyle(Style style) {
+    /**
+     * {@inheritDoc}
+     */
+    public TextImage useFontStyle(final Style style) {
+        Validate.notNull(style, "The style may not be null.");
+
         this.style = style;
         return this;
     }
 
-    public TextImage useColor(Color color) {
+    /**
+     * {@inheritDoc}
+     */
+    public TextImage useColor(final Color color) {
+        Validate.notNull(color, "The color may not be null.");
+
         this.previouslyUsedColor = color;
-
         this.graphics.setColor(color);
-
         return this;
     }
 
-    public TextImage useFontAndColor(Font font, Color color) {
+    /**
+     * {@inheritDoc}
+     */
+    public TextImage useFontAndColor(final Font font, final Color color) {
+        Validate.notNull(font, "The font may not be null.");
+        Validate.notNull(color, "The color may not be null.");
+
         this.previouslyUsedFont = font;
         this.previouslyUsedColor = color;
 
@@ -227,7 +297,12 @@ public class TextImageImpl implements TextImage {
         return this;
     }
 
-    public TextImage write(Image image) {
+    /**
+     * {@inheritDoc}
+     */
+    public TextImage write(final Image image) {
+        Validate.notNull(image, "The image may not be null.");
+
         int iWidth = ((BufferedImage) image).getWidth();
         int iHeight = ((BufferedImage) image).getHeight();
 
@@ -239,7 +314,12 @@ public class TextImageImpl implements TextImage {
         return this;
     }
 
-    public TextImage write(Image image, int yOffset) {
+    /**
+     * {@inheritDoc}
+     */
+    public TextImage write(final Image image, final int yOffset) {
+        Validate.notNull(image, "The image may not be null.");
+
         int oldY = this.yPos;
         this.yPos += yOffset;
         this.write(image);
@@ -250,7 +330,12 @@ public class TextImageImpl implements TextImage {
         return this;
     }
 
-    public TextImage writeLine(Image image) {
+    /**
+     * {@inheritDoc}
+     */
+    public TextImage writeLine(final Image image) {
+        Validate.notNull(image, "The image may not be null.");
+
         int iHeight = ((BufferedImage) image).getHeight();
 
         int y = this.yPos + getFontMetrics().getAscent() - iHeight;
@@ -260,40 +345,109 @@ public class TextImageImpl implements TextImage {
         return this;
     }
 
-    public TextImage write(Image image, int x, int y) {
-        this.graphics.drawImage(image, x, y, null);
+    /**
+     * {@inheritDoc}
+     */
+    public TextImage write(final Image image, final int x, final int y) {
+        Validate.notNull(image, "The image may not be null.");
 
+        this.graphics.drawImage(image, x, y, null);
         return this;
     }
 
-    public void setMargin(Margin margin) {
+    /**
+     * {@inheritDoc}
+     */
+    public void setMargin(final Margin margin) {
+        Validate.notNull(margin, "The margin may not be null.");
+
         // TODO Should we allow to set the margins after a fully constructed textimage?
         this.xPos = margin.getTop();
         this.yPos = margin.getLeft();
         this.margin = margin;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Font getCurrentFont() {
         return this.previouslyUsedFont;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Color getCurrentColor() {
         return this.previouslyUsedColor;
     }
 
-    public void createPng(OutputStream outputStream) throws IOException {
-        ImageIO.write(this.image, "png", outputStream);
+    /**
+     * {@inheritDoc}
+     */
+    public void createPng(final OutputStream outputStream) throws IOException {
+        Validate.notNull(outputStream, "The outputStream may not be null.");
+
+        ImageIO.write(this.image, PNG, outputStream);
     }
 
-    public void createJpg(OutputStream outputStream) throws IOException {
-        ImageIO.write(this.image, "jpeg", outputStream);
+    /**
+     * {@inheritDoc}
+     */
+    public void createPng(final File file) throws IOException {
+        OutputStream os = new FileOutputStream(file);
+        try {
+            ImageIO.write(image, PNG, os);
+        } finally {
+            os.close();
+        }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public void createJpg(final OutputStream outputStream) throws IOException {
+        Validate.notNull(outputStream, "The outputStream may not be null.");
+
+        ImageIO.write(this.image, JPEG, outputStream);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void createJpg(final File file) throws IOException {
+        Validate.notNull(file, "The file may not be null.");
+
+        Iterator iter = ImageIO.getImageWritersByFormatName(JPEG);
+        ImageWriter writer = (ImageWriter) iter.next();
+        // instantiate an ImageWriteParam object with default compression options
+
+        ImageWriteParam iwp = writer.getDefaultWriteParam();
+        iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+        iwp.setCompressionQuality(MAX_COMPRESSION);   // an integer between 0 and 1
+        // 1 specifies minimum compression and maximum quality
+
+        FileImageOutputStream output = new FileImageOutputStream(file);
+        writer.setOutput(output);
+        IIOImage image = new IIOImage(this.image, null, null);
+
+        try {
+            writer.write(null, image, iwp);
+        } finally {
+            writer.dispose();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public int getHeight() {
         return this.height;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public int getWidth() {
         return this.width;
-	}
+    }
 }

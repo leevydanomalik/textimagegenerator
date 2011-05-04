@@ -11,14 +11,14 @@ import nl.jamiecraane.imagegenerator.TextWrapper;
  * This class uses a greedy based text wrapping algorithm which uses all
  * available space on the line to fit in the words.
  */
-public class GreedyTextWrapper implements TextWrapper {
+public final class GreedyTextWrapper implements TextWrapper {
     private static final String SPACE = " ";
     private static final char CSPACE = ' ';
 
     /**
      * @see TextWrapper#doWrap(String, int, FontMetrics)
      */
-    public List<String> doWrap(String text, int lineWidth, FontMetrics fm) {
+    public List<String> doWrap(final String text, final int lineWidth, final FontMetrics fm) {
         List<String> lines = new ArrayList<String>();
 
         StringTokenizer tokenizer = new StringTokenizer(text, SPACE);

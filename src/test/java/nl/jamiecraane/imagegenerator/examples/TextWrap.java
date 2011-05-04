@@ -52,13 +52,6 @@ public class TextWrap {
         textImage.wrap(false).useFontStyle(Style.UNDERLINED).setTextAligment(Alignment.LEFT).newLine().write(
 				"This text falls of the line because wrapping is disabled again.");
 
-		FileOutputStream fos = new FileOutputStream(new File("textwrap.png"));
-		try {
-			textImage.createPng(fos);
-		} finally {
-			if (fos != null) {
-				fos.close();
-			}
-		}
+        textImage.createPng(new File("textwrap.png"));
 	}
 }

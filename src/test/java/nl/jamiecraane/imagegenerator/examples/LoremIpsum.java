@@ -39,14 +39,7 @@ public class LoremIpsum {
 		// Use a red color
 		textImage.useFontStyle(Style.PLAIN).useColor(Color.RED).writeLine("including versions of Lorem Ipsum.");
 
-		// 5. Write the image as a png to an outputstream
-		FileOutputStream fos = new FileOutputStream(new File("loremipsum.png"));
-		try {
-			textImage.createPng(fos);
-		} finally {
-			if (fos != null) {
-				fos.close();
-			}
-		}
+		// 5. Write the image as a png to a file
+        textImage.createPng(new File("loremipsum.png"));
 	}
 }
