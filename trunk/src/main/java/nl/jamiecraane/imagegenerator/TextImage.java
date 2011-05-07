@@ -1,9 +1,6 @@
 package nl.jamiecraane.imagegenerator;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Image;
-import java.io.File;
+import java.awt.*;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -206,7 +203,7 @@ public interface TextImage {
      */
     TextImage setTextAligment(Alignment alignment);
     /**
-     * @deprecated Use {@link TextImage#createPng(String)}
+     * @deprecated Use ImageWriterFactory to write images to the desired output format.
 	 * Writes the content of the image, as png, to the specified
 	 * {@link OutputStream}
 	 * 
@@ -214,28 +211,12 @@ public interface TextImage {
 	 */
 	void createPng(OutputStream outputStream) throws IOException;
 
-    /**
-     * Writes the contents of the TextImage to the given file as a jpeg image with
-     * the highest quality.
-     * @param file The file to save the image to.
-     * @throws IOException When the image could not be written to file.
-     */
-    void createPng(File file) throws IOException;
-
 	/**
-     * @deprecated Use {@link TextImage#createJpg(String)}
+     * @deprecated Use ImageWriterFactory to write images to the desired output format.
 	 * Writes the content of the image, as jpg, to the specified
 	 * {@link OutputStream}
 	 * 
 	 * @param outputStream
 	 */
 	void createJpg(OutputStream outputStream) throws IOException;
-
-    /**
-     * Writes the contents of the TextImage to the given file as a jpeg image with
-     * the highest quality.
-     * @param file The file to save the image to.
-     * @throws IOException When the image could not be written to file.
-     */
-    void createJpg(File file) throws IOException;
 }

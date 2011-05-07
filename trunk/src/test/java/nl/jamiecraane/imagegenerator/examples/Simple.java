@@ -1,14 +1,14 @@
 package nl.jamiecraane.imagegenerator.examples;
 
-import java.awt.Graphics2D;
-import java.io.File;
-import java.io.FileOutputStream;
-
 import nl.jamiecraane.imagegenerator.Margin;
-import nl.jamiecraane.imagegenerator.TextImage;
-import nl.jamiecraane.imagegenerator.TextImageCallback;
 import nl.jamiecraane.imagegenerator.Style;
+import nl.jamiecraane.imagegenerator.TextImage;
+import nl.jamiecraane.imagegenerator.imageexporter.ImageType;
+import nl.jamiecraane.imagegenerator.imageexporter.ImageWriter;
+import nl.jamiecraane.imagegenerator.imageexporter.ImageWriterFactory;
 import nl.jamiecraane.imagegenerator.impl.TextImageImpl;
+
+import java.io.File;
 
 /**
  * Simple example to demonstrate the creation of simple text-based images.
@@ -34,7 +34,7 @@ public class Simple {
 		// 4. Add other text
 		textImage.useFontStyle(Style.UNDERLINED).write("Hello world!");
 
-		// 5. Write the image as a png to a file
-        textImage.createPng(new File("example1.png"));
+        ImageWriter imageWriter = ImageWriterFactory.getImageWriter(ImageType.PNG);
+        imageWriter.writeImageToFile(textImage, new File("simple.png"));
 	}
 }

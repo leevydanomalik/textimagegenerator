@@ -423,8 +423,7 @@ public final class TextImageImpl implements TextImage {
 
         ImageWriteParam iwp = writer.getDefaultWriteParam();
         iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-        iwp.setCompressionQuality(MAX_COMPRESSION);   // an integer between 0 and 1
-        // 1 specifies minimum compression and maximum quality
+        iwp.setCompressionQuality(MAX_COMPRESSION);
 
         FileImageOutputStream output = new FileImageOutputStream(file);
         writer.setOutput(output);
@@ -435,6 +434,10 @@ public final class TextImageImpl implements TextImage {
         } finally {
             writer.dispose();
         }
+    }
+
+    public BufferedImage getBufferedImage() {
+        return image;
     }
 
     /**

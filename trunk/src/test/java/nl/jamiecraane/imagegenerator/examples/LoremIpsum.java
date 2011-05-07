@@ -1,14 +1,15 @@
 package nl.jamiecraane.imagegenerator.examples;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.io.File;
-import java.io.FileOutputStream;
-
 import nl.jamiecraane.imagegenerator.Margin;
 import nl.jamiecraane.imagegenerator.Style;
 import nl.jamiecraane.imagegenerator.TextImage;
+import nl.jamiecraane.imagegenerator.imageexporter.ImageType;
+import nl.jamiecraane.imagegenerator.imageexporter.ImageWriter;
+import nl.jamiecraane.imagegenerator.imageexporter.ImageWriterFactory;
 import nl.jamiecraane.imagegenerator.impl.TextImageImpl;
+
+import java.awt.*;
+import java.io.File;
 
 public class LoremIpsum {
 	public static void main(String[] args) throws Exception {
@@ -39,7 +40,7 @@ public class LoremIpsum {
 		// Use a red color
 		textImage.useFontStyle(Style.PLAIN).useColor(Color.RED).writeLine("including versions of Lorem Ipsum.");
 
-		// 5. Write the image as a png to a file
-        textImage.createPng(new File("loremipsum.png"));
+        ImageWriter imageWriter = ImageWriterFactory.getImageWriter(ImageType.PNG);
+        imageWriter.writeImageToFile(textImage, new File("loremipsum.png"));
 	}
 }
