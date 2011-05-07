@@ -21,7 +21,7 @@ public class LoremIpsumWatermarked {
 	}
 
 	private void runExample() throws IOException {
-		// 1. create the fonts used
+		// 1. create the nl.jamiecraane.imagegenerator.examples.fonts used
 		Font SansSerifBoldBig = new Font("SansSerif", Font.BOLD, 20);
 		Font SansSerifBoldNormal = new Font("SansSerif", Font.BOLD, 12);
 		Font SansSerifPlainNormal = new Font("SansSerif", Font.PLAIN, 12);
@@ -34,7 +34,7 @@ public class LoremIpsumWatermarked {
 		// 3. Use the WaterMarkImageBuilder to create a textimage with the specified image as a watermark
 		TextImage waterMarked = new WaterMarkImageBuilder(450, 300, new Margin(5, 5)).build(watermark);
 		
-		// 4. Specify fonts, text and color (last line)
+		// 4. Specify nl.jamiecraane.imagegenerator.examples.fonts, text and color (last line)
 		waterMarked.useFont(SansSerifBoldBig).writeLine("What is Lorem Ipsum?");
 		waterMarked.useFont(SansSerifBoldNormal).write("Lorem Ipsum ").useFont(SansSerifPlainNormal).writeLine(
 				"is simply dummy text of the printing and typesetting industry.");

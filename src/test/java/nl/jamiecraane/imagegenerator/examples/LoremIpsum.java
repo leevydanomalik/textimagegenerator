@@ -16,7 +16,7 @@ public class LoremIpsum {
 	}
 	
 	private void runExample() throws Exception {
-		// 1. create the fonts used
+		// 1. create the nl.jamiecraane.imagegenerator.examples.fonts used
 		Font SansSerifBoldBig = new Font("SansSerif", Font.BOLD, 20);
 		Font SansSerifBoldNormal = new Font("SansSerif", Font.BOLD, 12);
 		Font SansSerifPlainNormal = new Font("SansSerif", Font.PLAIN, 12);
@@ -24,7 +24,7 @@ public class LoremIpsum {
 		// 2. Create a new textimage of 450x300 pixels
 		TextImage textImage = new TextImageImpl(450, 300, new Margin(15, 0));
 
-		// 3. Specify fonts, text and color (last line)
+		// 3. Specify nl.jamiecraane.imagegenerator.examples.fonts, text and color (last line)
 		textImage.useFont(SansSerifBoldBig).writeLine("What is Lorem Ipsum?");
 		textImage.useFont(SansSerifBoldNormal).write("Lorem Ipsum ").useFont(SansSerifPlainNormal).writeLine(
 				"is simply dummy text of the printing and typesetting industry.");
