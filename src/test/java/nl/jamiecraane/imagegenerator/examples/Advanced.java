@@ -1,14 +1,19 @@
 package nl.jamiecraane.imagegenerator.examples;
 
-import nl.jamiecraane.imagegenerator.*;
+import nl.jamiecraane.imagegenerator.Alignment;
+import nl.jamiecraane.imagegenerator.Margin;
+import nl.jamiecraane.imagegenerator.TextImage;
+import nl.jamiecraane.imagegenerator.TextImageCallback;
+import nl.jamiecraane.imagegenerator.imageexporter.ImageType;
+import nl.jamiecraane.imagegenerator.imageexporter.ImageWriter;
+import nl.jamiecraane.imagegenerator.imageexporter.ImageWriterFactory;
 import nl.jamiecraane.imagegenerator.impl.TextImageImpl;
 
 import javax.imageio.ImageIO;
-import java.io.FileOutputStream;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.InputStream;
-import java.awt.image.BufferedImage;
-import java.awt.*;
 
 /**
  * Author: Jamie Craane
@@ -23,11 +28,11 @@ public class Advanced {
 
     private void runExample() throws Exception {
         InputStream is = this.getClass().getResourceAsStream(
-				"/nl/jamiecraane/imagegenerator/resources/images/warning2.gif");
-		BufferedImage warningSmall = ImageIO.read(is);
+                "/nl/jamiecraane/imagegenerator/resources/images/warning2.gif");
+        BufferedImage warningSmall = ImageIO.read(is);
         is = this.getClass().getResourceAsStream(
-				"/nl/jamiecraane/imagegenerator/resources/images/exclamation_triangle_green.png");
-		BufferedImage warningBig = ImageIO.read(is);
+                "/nl/jamiecraane/imagegenerator/resources/images/exclamation_triangle_green.png");
+        BufferedImage warningBig = ImageIO.read(is);
 
         TextImage textImage = new TextImageImpl(450, 400, new Margin(5, 5));
 
@@ -44,6 +49,7 @@ public class Advanced {
             }
         });
 
-        textImage.createPng(new File("advanced.png"));
+        ImageWriter imageWriter = ImageWriterFactory.getImageWriter(ImageType.PNG);
+        imageWriter.writeImageToFile(textImage, new File("advanced.png"));
     }
 }

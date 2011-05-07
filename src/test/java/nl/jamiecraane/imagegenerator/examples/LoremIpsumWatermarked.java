@@ -1,19 +1,19 @@
 package nl.jamiecraane.imagegenerator.examples;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
-import javax.imageio.ImageIO;
-
 import nl.jamiecraane.imagegenerator.Margin;
 import nl.jamiecraane.imagegenerator.Style;
 import nl.jamiecraane.imagegenerator.TextImage;
 import nl.jamiecraane.imagegenerator.WaterMarkImageBuilder;
+import nl.jamiecraane.imagegenerator.imageexporter.ImageType;
+import nl.jamiecraane.imagegenerator.imageexporter.ImageWriter;
+import nl.jamiecraane.imagegenerator.imageexporter.ImageWriterFactory;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class LoremIpsumWatermarked {
 	public static void main(String[] args) throws IOException {
@@ -49,7 +49,7 @@ public class LoremIpsumWatermarked {
 		// Use a red color
 		waterMarked.useFontStyle(Style.PLAIN).useColor(Color.RED).writeLine("including versions of Lorem Ipsum.");
 
-		// 5. Write the image as a png to a file
-        waterMarked.createPng(new File("loremipsum-watermarked.png"));
+        ImageWriter imageWriter = ImageWriterFactory.getImageWriter(ImageType.PNG);
+        imageWriter.writeImageToFile(waterMarked, new File("loremipsum-watermarked.png"));
 	}
 }

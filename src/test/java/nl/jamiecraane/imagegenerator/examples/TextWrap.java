@@ -1,16 +1,18 @@
 package nl.jamiecraane.imagegenerator.examples;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.awt.*;
-
+import nl.jamiecraane.imagegenerator.Alignment;
 import nl.jamiecraane.imagegenerator.Margin;
 import nl.jamiecraane.imagegenerator.Style;
 import nl.jamiecraane.imagegenerator.TextImage;
-import nl.jamiecraane.imagegenerator.Alignment;
+import nl.jamiecraane.imagegenerator.imageexporter.ImageType;
+import nl.jamiecraane.imagegenerator.imageexporter.ImageWriter;
+import nl.jamiecraane.imagegenerator.imageexporter.ImageWriterFactory;
 import nl.jamiecraane.imagegenerator.impl.GreedyTextWrapper;
 import nl.jamiecraane.imagegenerator.impl.TextImageImpl;
+
+import java.awt.*;
+import java.io.File;
+import java.io.InputStream;
 
 public class TextWrap {
 	public static void main(String[] args) throws Exception {
@@ -52,6 +54,7 @@ public class TextWrap {
         textImage.wrap(false).useFontStyle(Style.UNDERLINED).setTextAligment(Alignment.LEFT).newLine().write(
 				"This text falls of the line because wrapping is disabled again.");
 
-        textImage.createPng(new File("textwrap.png"));
+        ImageWriter imageWriter = ImageWriterFactory.getImageWriter(ImageType.PNG);
+        imageWriter.writeImageToFile(textImage, new File("textwrap.png"));
 	}
 }
