@@ -1,0 +1,60 @@
+package nl.jamiecraane.imagegenerator.examples;
+
+import nl.jamiecraane.imagegenerator.Alignment;
+import nl.jamiecraane.imagegenerator.Margin;
+import nl.jamiecraane.imagegenerator.Style;
+import nl.jamiecraane.imagegenerator.TextImage;
+import nl.jamiecraane.imagegenerator.imageexporter.ImageType;
+import nl.jamiecraane.imagegenerator.imageexporter.ImageWriter;
+import nl.jamiecraane.imagegenerator.imageexporter.ImageWriterFactory;
+import nl.jamiecraane.imagegenerator.impl.GreedyTextWrapper;
+import nl.jamiecraane.imagegenerator.impl.TextImageImpl;
+
+import java.awt.*;
+import java.io.File;
+import java.io.InputStream;
+
+public class TextWrap {
+	public static void main(String[] args) throws Exception {
+		new TextWrap().runExample();
+	}
+
+	private void runExample() throws Exception {
+        TextImage textImage = new TextImageImpl(300, 550, new Margin(25, 5, 50, 0));
+
+        InputStream is = this.getClass().getResourceAsStream(
+				"/nl/jamiecraane/imagegenerator/examples/fonts/cour.ttf");
+        Font usedFont = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(11.0f);
+
+        textImage.useTextWrapper(new GreedyTextWrapper());
+        textImage.setTextAligment(Alignment.LEFT);
+        textImage.useFont(usedFont);
+
+        textImage
+				.wrap(true)
+                .write(
+						"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever sinze the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.").newLine();
+
+        textImage
+				.setTextAligment(Alignment.RIGHT)
+                .write(
+						"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever sinze the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.").newLine();
+
+        textImage
+				.setTextAligment(Alignment.CENTER)
+                .write(
+						"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever sinze the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.").newLine();
+
+        textImage
+				.setTextAligment(Alignment.JUSTIFY)
+                .write(
+						"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever sinze the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.").newLine()
+                ;
+
+        textImage.wrap(false).useFontStyle(Style.UNDERLINED).setTextAligment(Alignment.LEFT).newLine().write(
+				"This text falls of the line because wrapping is disabled again.");
+
+        ImageWriter imageWriter = ImageWriterFactory.getImageWriter(ImageType.PNG);
+        imageWriter.writeImageToFile(textImage, new File("textwrap.png"));
+	}
+}
