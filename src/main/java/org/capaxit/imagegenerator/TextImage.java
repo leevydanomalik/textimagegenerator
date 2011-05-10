@@ -1,8 +1,6 @@
 package org.capaxit.imagegenerator;
 
 import java.awt.*;
-import java.io.IOException;
-import java.io.OutputStream;
 
 /**
  * Interface containing all methods for constructing images with text based content. Most methods in this
@@ -137,8 +135,8 @@ public interface TextImage {
 	 * Inserts a newline based on the previously used dont. The previously used
 	 * font is determined by the last call to the addText* methods with the
 	 * given font. If none of these methods are used, no font is available yet,
-	 * you can set one with the {@link #useFont(Font)} and
-	 * {@link #useFontAndColor(Font, Color)} methods.
+	 * you can set one with the {@link #withFont(Font)} and
+	 * {@link #withFontAndColor(Font, Color)} methods.
 	 * 
 	 * @return this
 	 */
@@ -159,7 +157,7 @@ public interface TextImage {
 	 * @param font
 	 * @return this
 	 */
-	TextImage useFont(Font font);
+	TextImage withFont(Font font);
 
 	/**
 	 * Set the fontstyle to be used.
@@ -167,16 +165,7 @@ public interface TextImage {
 	 * @param style
 	 * @return this
 	 */
-	TextImage useFontStyle(Style style);
-
-	/**
-	 * Use the specified Font and color in all subsequent calls.
-	 * 
-	 * @param font
-	 * @param color
-	 * @return this
-	 */
-	TextImage useFontAndColor(Font font, Color color);
+	TextImage withFontStyle(Style style);
 
 	/**
 	 * Use the specified color in all subsequent calls.
@@ -184,7 +173,7 @@ public interface TextImage {
 	 * @param color
 	 * @return this
 	 */
-	TextImage useColor(Color color);
+	TextImage withColor(Color color);
 	/**
      * Returns the currently used Font.
 	 * @return The currently used font.
@@ -202,21 +191,4 @@ public interface TextImage {
      * @return this
      */
     TextImage setTextAligment(Alignment alignment);
-    /**
-     * @deprecated Use ImageWriterFactory to write images to the desired output format.
-	 * Writes the content of the image, as png, to the specified
-	 * {@link OutputStream}
-	 * 
-	 * @param outputStream
-	 */
-	void createPng(OutputStream outputStream) throws IOException;
-
-	/**
-     * @deprecated Use ImageWriterFactory to write images to the desired output format.
-	 * Writes the content of the image, as jpg, to the specified
-	 * {@link OutputStream}
-	 * 
-	 * @param outputStream
-	 */
-	void createJpg(OutputStream outputStream) throws IOException;
 }

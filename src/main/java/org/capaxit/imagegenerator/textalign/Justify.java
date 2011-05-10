@@ -15,9 +15,9 @@ import java.awt.*;
  */
 public final class Justify extends AbstractAlign implements Align {
     public List<DrawableText> align(final String text, final FontMetrics fm, final int linewidth) {
-        List<DrawableText> result = new ArrayList<DrawableText>();
+        final List<DrawableText> result = new ArrayList<DrawableText>();
 
-        String[] words = super.getWords(text);
+        final String[] words = super.getWords(text);
 
         int spaceLeft = linewidth - fm.stringWidth(text);
         // Do not count the spaces because the glue will become the new spaces
@@ -32,10 +32,10 @@ public final class Justify extends AbstractAlign implements Align {
             glue = Math.round((float) spaceLeft / (words.length - 1));
         }
 
-        int x = 0;
+        int xPosition = 0;
         for (String word : words) {
-            result.add(new DrawableText(word, x));
-            x += fm.stringWidth(word) + glue;
+            result.add(new DrawableText(word, xPosition));
+            xPosition += fm.stringWidth(word) + glue;
         }
 
         return result;

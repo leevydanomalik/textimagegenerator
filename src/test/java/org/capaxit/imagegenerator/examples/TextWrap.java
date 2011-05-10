@@ -28,7 +28,7 @@ public class TextWrap {
 
         textImage.useTextWrapper(new GreedyTextWrapper());
         textImage.setTextAligment(Alignment.LEFT);
-        textImage.useFont(usedFont);
+        textImage.withFont(usedFont);
 
         textImage
 				.wrap(true)
@@ -51,7 +51,7 @@ public class TextWrap {
 						"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever sinze the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.").newLine()
                 ;
 
-        textImage.wrap(false).useFontStyle(Style.UNDERLINED).setTextAligment(Alignment.LEFT).newLine().write(
+        textImage.wrap(false).withFontStyle(Style.UNDERLINED).setTextAligment(Alignment.LEFT).newLine().write(
 				"This text falls of the line because wrapping is disabled again.");
 
         ImageWriter imageWriter = ImageWriterFactory.getImageWriter(ImageType.PNG);

@@ -35,8 +35,8 @@ public class LoremIpsumWatermarked {
 		TextImage waterMarked = new WaterMarkImageBuilder(450, 300, new Margin(5, 5)).build(watermark);
 		
 		// 4. Specify nl.jamiecraane.imagegenerator.examples.fonts, text and color (last line)
-		waterMarked.useFont(SansSerifBoldBig).writeLine("What is Lorem Ipsum?");
-		waterMarked.useFont(SansSerifBoldNormal).write("Lorem Ipsum ").useFont(SansSerifPlainNormal).writeLine(
+		waterMarked.withFont(SansSerifBoldBig).writeLine("What is Lorem Ipsum?");
+		waterMarked.withFont(SansSerifBoldNormal).write("Lorem Ipsum ").withFont(SansSerifPlainNormal).writeLine(
 				"is simply dummy text of the printing and typesetting industry.");
 		waterMarked.writeLine("Lorem Ipsum has been the industry's standard dummy text ever since");
 		waterMarked.writeLine("the 1500s, when an unknown printer took a galley of type and");
@@ -45,9 +45,9 @@ public class LoremIpsumWatermarked {
 		waterMarked.writeLine("remaining essentially unchanged. It was popularised in the 1960s with");
 		waterMarked.writeLine("the release of Letraset sheets containing Lorem Ipsum passages, and");
 		// Underline
-		waterMarked.useFontStyle(Style.UNDERLINED).write("more recently with desktop publishing software like Aldus PageMaker").newLine();
+		waterMarked.withFontStyle(Style.UNDERLINED).write("more recently with desktop publishing software like Aldus PageMaker").newLine();
 		// Use a red color
-		waterMarked.useFontStyle(Style.PLAIN).useColor(Color.RED).writeLine("including versions of Lorem Ipsum.");
+		waterMarked.withFontStyle(Style.PLAIN).withColor(Color.RED).writeLine("including versions of Lorem Ipsum.");
 
         ImageWriter imageWriter = ImageWriterFactory.getImageWriter(ImageType.PNG);
         imageWriter.writeImageToFile(waterMarked, new File("loremipsum-watermarked.png"));

@@ -1,11 +1,11 @@
 package org.capaxit.imagegenerator.textalign;
 
-import java.awt.FontMetrics;
+import org.capaxit.imagegenerator.TextWrapper;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
-
-import org.capaxit.imagegenerator.TextWrapper;
 
 /**
  * This class uses a greedy based text wrapping algorithm which uses all
@@ -19,11 +19,11 @@ public final class GreedyTextWrapper implements TextWrapper {
      * @see org.capaxit.imagegenerator.TextWrapper#doWrap(String, int, FontMetrics)
      */
     public List<String> doWrap(final String text, final int lineWidth, final FontMetrics fm) {
-        List<String> lines = new ArrayList<String>();
+        final List<String> lines = new ArrayList<String>();
 
-        StringTokenizer tokenizer = new StringTokenizer(text, SPACE);
+        final StringTokenizer tokenizer = new StringTokenizer(text, SPACE);
         int spaceLeft = lineWidth;
-        StringBuilder builder = new StringBuilder();
+        final StringBuilder builder = new StringBuilder();
         boolean removed = false;
         String word = "";
         boolean nospaceleft;
@@ -51,7 +51,7 @@ public final class GreedyTextWrapper implements TextWrapper {
 
                     lines.add(builder.toString());
                     spaceLeft = lineWidth;
-                    builder = new StringBuilder();
+                    builder.setLength(0);
                     nospaceleft = true;
                 } else {
                     spaceLeft -= fm.charWidth(chars[i]);

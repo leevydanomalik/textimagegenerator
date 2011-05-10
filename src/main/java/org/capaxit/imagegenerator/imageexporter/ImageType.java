@@ -6,5 +6,5 @@ package org.capaxit.imagegenerator.imageexporter;
  * User: Jamie Craane
  */
 public enum ImageType {
-    PNG, JPEG;
+    PNG, JPEG
 }
