@@ -1,5 +1,6 @@
-package nl.jamiecraane.imagegenerator.impl;
+package org.capaxit.imagegenerator.impl;
 
+import org.capaxit.imagegenerator.textalign.*;
 import org.capaxit.imagegenerator.util.Validate;
 import org.capaxit.imagegenerator.*;
 

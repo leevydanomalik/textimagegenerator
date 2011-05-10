@@ -1,4 +1,4 @@
-package nl.jamiecraane.imagegenerator.impl;
+package org.capaxit.imagegenerator.textalign;
 
 import org.capaxit.imagegenerator.Align;
 import org.capaxit.imagegenerator.DrawableText;
@@ -8,17 +8,17 @@ import java.util.ArrayList;
 import java.awt.*;
 
 /**
- * Centers the given text bsed on the linewidth.
+ * * Left aligns the given text bsed on the linewidth.
  * Author: Jamie Craane
  * Date: 22-dec-2008
- * Time: 12:37:15
+ * Time: 12:33:48
  */
-public final class Center extends AbstractAlign implements Align {
+public final class RightAlign extends AbstractAlign implements Align {
     public List<DrawableText> align(final String text, final FontMetrics fm, final int linewidth) {
         List<DrawableText> result = new ArrayList<DrawableText>();
 
         String[] words = super.getWords(text);
-        int x = (linewidth - fm.stringWidth(text)) / 2;
+        int x = (linewidth - fm.stringWidth(text));
         for (String word : words) {
             if (word.length() == 0) {
                 // This is the delimiter

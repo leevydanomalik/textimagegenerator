@@ -1,4 +1,4 @@
-package nl.jamiecraane.imagegenerator.impl;
+package org.capaxit.imagegenerator.textalign;
 
 import org.capaxit.imagegenerator.Align;
 import org.capaxit.imagegenerator.DrawableText;
