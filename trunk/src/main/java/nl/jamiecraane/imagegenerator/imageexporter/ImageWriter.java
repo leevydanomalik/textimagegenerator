@@ -1,6 +1,6 @@
 package nl.jamiecraane.imagegenerator.imageexporter;
 
-import nl.jamiecraane.imagegenerator.TextImage;
+import org.capaxit.imagegenerator.TextImage;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package nl.jamiecraane.imagegenerator;
+package org.capaxit.imagegenerator;
 
 import java.awt.FontMetrics;
 import java.util.List;

@@ -1,7 +1,7 @@
 package nl.jamiecraane.imagegenerator.impl;
 
-import nl.jamiecraane.imagegenerator.*;
 import nl.jamiecraane.imagegenerator.utils.Validate;
+import org.capaxit.imagegenerator.*;
 
 import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Implementation of the {@link TextImage} interface. The default font is
+ * Implementation of the {@link org.capaxit.imagegenerator.TextImage} interface. The default font is
  * SansSerif, PLAIN, 12. The default color is black. Wrapping of text at the
  * right margin defaults to false.
  * The {@link GreedyTextWrapper} is used as the default text wrapping algorithm.

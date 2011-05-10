@@ -1,8 +1,8 @@
 package nl.jamiecraane.imagegenerator.examples;
 
-import nl.jamiecraane.imagegenerator.Margin;
-import nl.jamiecraane.imagegenerator.Style;
-import nl.jamiecraane.imagegenerator.TextImage;
+import org.capaxit.imagegenerator.Margin;
+import org.capaxit.imagegenerator.Style;
+import org.capaxit.imagegenerator.TextImage;
 import nl.jamiecraane.imagegenerator.imageexporter.ImageType;
 import nl.jamiecraane.imagegenerator.imageexporter.ImageWriter;
 import nl.jamiecraane.imagegenerator.imageexporter.ImageWriterFactory;

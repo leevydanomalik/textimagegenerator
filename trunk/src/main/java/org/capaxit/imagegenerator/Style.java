@@ -1,4 +1,4 @@
-package nl.jamiecraane.imagegenerator;
+package org.capaxit.imagegenerator;
 
 public enum Style {
 	PLAIN,

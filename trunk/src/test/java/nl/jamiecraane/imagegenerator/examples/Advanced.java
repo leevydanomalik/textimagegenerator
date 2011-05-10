@@ -1,13 +1,12 @@
 package nl.jamiecraane.imagegenerator.examples;
 
-import nl.jamiecraane.imagegenerator.Alignment;
-import nl.jamiecraane.imagegenerator.Margin;
-import nl.jamiecraane.imagegenerator.TextImage;
-import nl.jamiecraane.imagegenerator.TextImageCallback;
+import org.capaxit.imagegenerator.*;
+import org.capaxit.imagegenerator.Margin;
 import nl.jamiecraane.imagegenerator.imageexporter.ImageType;
 import nl.jamiecraane.imagegenerator.imageexporter.ImageWriter;
 import nl.jamiecraane.imagegenerator.imageexporter.ImageWriterFactory;
 import nl.jamiecraane.imagegenerator.impl.TextImageImpl;
+import org.capaxit.imagegenerator.TextImageCallback;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

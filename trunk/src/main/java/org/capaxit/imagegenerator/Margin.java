@@ -1,4 +1,4 @@
-package nl.jamiecraane.imagegenerator;
+package org.capaxit.imagegenerator;
 
 /**
  * top, left, right and bottom margins in pixels.

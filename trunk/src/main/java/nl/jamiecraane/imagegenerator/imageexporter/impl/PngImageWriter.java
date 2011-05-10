@@ -1,6 +1,6 @@
 package nl.jamiecraane.imagegenerator.imageexporter.impl;
 
-import nl.jamiecraane.imagegenerator.TextImage;
+import org.capaxit.imagegenerator.TextImage;
 import nl.jamiecraane.imagegenerator.imageexporter.ImageWriter;
 import nl.jamiecraane.imagegenerator.impl.TextImageImpl;
 import nl.jamiecraane.imagegenerator.utils.Validate;

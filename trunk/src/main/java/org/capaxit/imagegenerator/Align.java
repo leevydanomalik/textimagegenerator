@@ -1,4 +1,4 @@
-package nl.jamiecraane.imagegenerator;
+package org.capaxit.imagegenerator;
 
 import java.util.List;
 import java.awt.*;
