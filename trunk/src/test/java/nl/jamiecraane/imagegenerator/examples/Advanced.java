@@ -5,7 +5,7 @@ import org.capaxit.imagegenerator.Margin;
 import org.capaxit.imagegenerator.imageexporter.ImageType;
 import org.capaxit.imagegenerator.imageexporter.ImageWriter;
 import org.capaxit.imagegenerator.imageexporter.ImageWriterFactory;
-import nl.jamiecraane.imagegenerator.impl.TextImageImpl;
+import org.capaxit.imagegenerator.impl.TextImageImpl;
 import org.capaxit.imagegenerator.TextImageCallback;
 
 import javax.imageio.ImageIO;

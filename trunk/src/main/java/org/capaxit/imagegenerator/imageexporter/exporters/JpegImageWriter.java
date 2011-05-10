@@ -2,7 +2,7 @@ package org.capaxit.imagegenerator.imageexporter.exporters;
 
 import org.capaxit.imagegenerator.TextImage;
 import org.capaxit.imagegenerator.imageexporter.ImageWriter;
-import nl.jamiecraane.imagegenerator.impl.TextImageImpl;
+import org.capaxit.imagegenerator.impl.TextImageImpl;
 import org.capaxit.imagegenerator.util.Validate;
 
 import javax.imageio.IIOImage;

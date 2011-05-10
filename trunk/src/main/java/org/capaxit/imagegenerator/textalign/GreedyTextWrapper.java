@@ -1,4 +1,4 @@
-package nl.jamiecraane.imagegenerator.impl;
+package org.capaxit.imagegenerator.textalign;
 
 import java.awt.FontMetrics;
 import java.util.ArrayList;

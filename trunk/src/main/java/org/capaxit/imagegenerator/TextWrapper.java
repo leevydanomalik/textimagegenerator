@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Defines the contract for textwrapper implementations. A textwrapper implements de details of how to
  * wrap the given text over multiple lines. Different strategies can be implemented.
- * @see nl.jamiecraane.imagegenerator.impl.GreedyTextWrapper
+ * @see org.capaxit.imagegenerator.textalign.GreedyTextWrapper
  */
 public interface TextWrapper {
 	/**

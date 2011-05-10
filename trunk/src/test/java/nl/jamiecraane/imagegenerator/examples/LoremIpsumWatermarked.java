@@ -3,7 +3,7 @@ package nl.jamiecraane.imagegenerator.examples;
 import org.capaxit.imagegenerator.Margin;
 import org.capaxit.imagegenerator.Style;
 import org.capaxit.imagegenerator.TextImage;
-import org.capaxit.imagegenerator.WaterMarkImageBuilder;
+import org.capaxit.imagegenerator.builders.WaterMarkImageBuilder;
 import org.capaxit.imagegenerator.imageexporter.ImageType;
 import org.capaxit.imagegenerator.imageexporter.ImageWriter;
 import org.capaxit.imagegenerator.imageexporter.ImageWriterFactory;

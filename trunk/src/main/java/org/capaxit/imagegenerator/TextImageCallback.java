@@ -2,7 +2,7 @@ package org.capaxit.imagegenerator;
 
 import java.awt.Graphics2D;
 
-import nl.jamiecraane.imagegenerator.impl.TextImageImpl;
+import org.capaxit.imagegenerator.impl.TextImageImpl;
 
 /**
  * Callback for the textimage.

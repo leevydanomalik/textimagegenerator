@@ -1,6 +1,8 @@
-package org.capaxit.imagegenerator;
+package org.capaxit.imagegenerator.builders;
 
-import nl.jamiecraane.imagegenerator.impl.TextImageImpl;
+import org.capaxit.imagegenerator.impl.TextImageImpl;
+import org.capaxit.imagegenerator.Margin;
+import org.capaxit.imagegenerator.TextImage;
 
 import java.awt.image.BufferedImage;
 
