@@ -2,9 +2,9 @@ package nl.jamiecraane.imagegenerator.examples;
 
 import org.capaxit.imagegenerator.*;
 import org.capaxit.imagegenerator.Margin;
-import nl.jamiecraane.imagegenerator.imageexporter.ImageType;
-import nl.jamiecraane.imagegenerator.imageexporter.ImageWriter;
-import nl.jamiecraane.imagegenerator.imageexporter.ImageWriterFactory;
+import org.capaxit.imagegenerator.imageexporter.ImageType;
+import org.capaxit.imagegenerator.imageexporter.ImageWriter;
+import org.capaxit.imagegenerator.imageexporter.ImageWriterFactory;
 import nl.jamiecraane.imagegenerator.impl.TextImageImpl;
 import org.capaxit.imagegenerator.TextImageCallback;
 

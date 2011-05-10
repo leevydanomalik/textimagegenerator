@@ -1,6 +1,6 @@
 package nl.jamiecraane.imagegenerator.impl;
 
-import nl.jamiecraane.imagegenerator.utils.Validate;
+import org.capaxit.imagegenerator.util.Validate;
 import org.capaxit.imagegenerator.*;
 
 import javax.imageio.IIOImage;

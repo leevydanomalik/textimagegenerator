@@ -1,4 +1,4 @@
-package nl.jamiecraane.imagegenerator.imageexporter;
+package org.capaxit.imagegenerator.imageexporter;
 
 /**
  * Specifies the export type of the image.
