@@ -1,4 +1,4 @@
-package nl.jamiecraane.imagegenerator.examples;
+package org.capaxit.imagegenerator.examples;
 
 import org.capaxit.imagegenerator.Alignment;
 import org.capaxit.imagegenerator.Margin;
