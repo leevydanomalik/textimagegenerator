@@ -26,8 +26,8 @@ public class LoremIpsum {
 		TextImage textImage = new TextImageImpl(450, 300, new Margin(15, 0));
 
 		// 3. Specify nl.jamiecraane.imagegenerator.examples.fonts, text and color (last line)
-		textImage.useFont(SansSerifBoldBig).writeLine("What is Lorem Ipsum?");
-		textImage.useFont(SansSerifBoldNormal).write("Lorem Ipsum ").useFont(SansSerifPlainNormal).writeLine(
+		textImage.withFont(SansSerifBoldBig).writeLine("What is Lorem Ipsum?");
+		textImage.withFont(SansSerifBoldNormal).write("Lorem Ipsum ").withFont(SansSerifPlainNormal).writeLine(
 				"is simply dummy text of the printing and typesetting industry.");
 		textImage.writeLine("Lorem Ipsum has been the industry's standard dummy text ever since");
 		textImage.writeLine("the 1500s, when an unknown printer took a galley of type and");
@@ -36,9 +36,9 @@ public class LoremIpsum {
 		textImage.writeLine("remaining essentially unchanged. It was popularised in the 1960s with");
 		textImage.writeLine("the release of Letraset sheets containing Lorem Ipsum passages, and");
 		// Underline
-		textImage.useFontStyle(Style.UNDERLINED).write("more recently with desktop publishing software like Aldus PageMaker").newLine();
+		textImage.withFontStyle(Style.UNDERLINED).write("more recently with desktop publishing software like Aldus PageMaker").newLine();
 		// Use a red color
-		textImage.useFontStyle(Style.PLAIN).useColor(Color.RED).writeLine("including versions of Lorem Ipsum.");
+		textImage.withFontStyle(Style.PLAIN).withColor(Color.RED).writeLine("including versions of Lorem Ipsum.");
 
         ImageWriter imageWriter = ImageWriterFactory.getImageWriter(ImageType.PNG);
         imageWriter.writeImageToFile(textImage, new File("loremipsum.png"));

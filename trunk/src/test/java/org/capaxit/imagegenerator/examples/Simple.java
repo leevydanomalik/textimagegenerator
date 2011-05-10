@@ -32,7 +32,7 @@ public class Simple {
 		textImage.newLine().newLine();
 
 		// 4. Add other text
-		textImage.useFontStyle(Style.UNDERLINED).write("Hello world!");
+		textImage.withFontStyle(Style.UNDERLINED).write("Hello world!");
 
         ImageWriter imageWriter = ImageWriterFactory.getImageWriter(ImageType.PNG);
         imageWriter.writeImageToFile(textImage, new File("simple.png"));

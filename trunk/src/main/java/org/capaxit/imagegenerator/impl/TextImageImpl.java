@@ -1,22 +1,12 @@
 package org.capaxit.imagegenerator.impl;
 
+import org.capaxit.imagegenerator.*;
 import org.capaxit.imagegenerator.textalign.*;
 import org.capaxit.imagegenerator.util.Validate;
-import org.capaxit.imagegenerator.*;
 
-import javax.imageio.IIOImage;
-import javax.imageio.ImageIO;
-import javax.imageio.ImageWriteParam;
-import javax.imageio.ImageWriter;
-import javax.imageio.stream.FileImageOutputStream;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -243,7 +233,7 @@ public final class TextImageImpl implements TextImage {
     /**
      * {@inheritDoc}
      */
-    public TextImage useFont(final Font font) {
+    public TextImage withFont(final Font font) {
         Validate.notNull(font, "The font may not be null.");
 
         this.previouslyUsedFont = font;
@@ -264,7 +254,7 @@ public final class TextImageImpl implements TextImage {
     /**
      * {@inheritDoc}
      */
-    public TextImage useFontStyle(final Style style) {
+    public TextImage withFontStyle(final Style style) {
         Validate.notNull(style, "The style may not be null.");
 
         this.style = style;
@@ -274,27 +264,11 @@ public final class TextImageImpl implements TextImage {
     /**
      * {@inheritDoc}
      */
-    public TextImage useColor(final Color color) {
+    public TextImage withColor(final Color color) {
         Validate.notNull(color, "The color may not be null.");
 
         this.previouslyUsedColor = color;
         this.graphics.setColor(color);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public TextImage useFontAndColor(final Font font, final Color color) {
-        Validate.notNull(font, "The font may not be null.");
-        Validate.notNull(color, "The color may not be null.");
-
-        this.previouslyUsedFont = font;
-        this.previouslyUsedColor = color;
-
-        graphics.setFont(font);
-        graphics.setColor(color);
-
         return this;
     }
 
@@ -382,61 +356,7 @@ public final class TextImageImpl implements TextImage {
         return this.previouslyUsedColor;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public void createPng(final OutputStream outputStream) throws IOException {
-        Validate.notNull(outputStream, "The outputStream may not be null.");
-
-        ImageIO.write(this.image, PNG, outputStream);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void createPng(final File file) throws IOException {
-        OutputStream os = new FileOutputStream(file);
-        try {
-            ImageIO.write(image, PNG, os);
-        } finally {
-            os.close();
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void createJpg(final OutputStream outputStream) throws IOException {
-        Validate.notNull(outputStream, "The outputStream may not be null.");
-
-        ImageIO.write(this.image, JPEG, outputStream);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void createJpg(final File file) throws IOException {
-        Validate.notNull(file, "The file may not be null.");
-
-        Iterator iter = ImageIO.getImageWritersByFormatName(JPEG);
-        ImageWriter writer = (ImageWriter) iter.next();
-        // instantiate an ImageWriteParam object with default compression options
-
-        ImageWriteParam iwp = writer.getDefaultWriteParam();
-        iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-        iwp.setCompressionQuality(MAX_COMPRESSION);
-
-        FileImageOutputStream output = new FileImageOutputStream(file);
-        writer.setOutput(output);
-        IIOImage image = new IIOImage(this.image, null, null);
-
-        try {
-            writer.write(null, image, iwp);
-        } finally {
-            writer.dispose();
-        }
-    }
-
+    // TODO Find a better way to get to the buffered image
     public BufferedImage getBufferedImage() {
         return image;
     }
