@@ -4,9 +4,9 @@ import org.capaxit.imagegenerator.Margin;
 import org.capaxit.imagegenerator.Style;
 import org.capaxit.imagegenerator.TextImage;
 import org.capaxit.imagegenerator.WaterMarkImageBuilder;
-import nl.jamiecraane.imagegenerator.imageexporter.ImageType;
-import nl.jamiecraane.imagegenerator.imageexporter.ImageWriter;
-import nl.jamiecraane.imagegenerator.imageexporter.ImageWriterFactory;
+import org.capaxit.imagegenerator.imageexporter.ImageType;
+import org.capaxit.imagegenerator.imageexporter.ImageWriter;
+import org.capaxit.imagegenerator.imageexporter.ImageWriterFactory;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

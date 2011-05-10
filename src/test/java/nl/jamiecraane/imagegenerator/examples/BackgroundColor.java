@@ -4,9 +4,9 @@ import org.capaxit.imagegenerator.Margin;
 import org.capaxit.imagegenerator.Style;
 import org.capaxit.imagegenerator.TextImage;
 import org.capaxit.imagegenerator.TextImageCallback;
-import nl.jamiecraane.imagegenerator.imageexporter.ImageType;
-import nl.jamiecraane.imagegenerator.imageexporter.ImageWriter;
-import nl.jamiecraane.imagegenerator.imageexporter.ImageWriterFactory;
+import org.capaxit.imagegenerator.imageexporter.ImageType;
+import org.capaxit.imagegenerator.imageexporter.ImageWriter;
+import org.capaxit.imagegenerator.imageexporter.ImageWriterFactory;
 import nl.jamiecraane.imagegenerator.impl.TextImageImpl;
 
 import java.awt.*;

@@ -1,4 +1,4 @@
-package nl.jamiecraane.imagegenerator.utils;
+package org.capaxit.imagegenerator.util;
 
 /**
  * Simple utility class to validate parameters. Throws an IllegaleArgumentException if the

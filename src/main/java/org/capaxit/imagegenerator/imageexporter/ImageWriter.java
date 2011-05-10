@@ -1,4 +1,4 @@
-package nl.jamiecraane.imagegenerator.imageexporter;
+package org.capaxit.imagegenerator.imageexporter;
 
 import org.capaxit.imagegenerator.TextImage;
 

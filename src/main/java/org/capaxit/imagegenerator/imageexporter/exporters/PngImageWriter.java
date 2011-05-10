@@ -1,9 +1,9 @@
-package nl.jamiecraane.imagegenerator.imageexporter.impl;
+package org.capaxit.imagegenerator.imageexporter.exporters;
 
 import org.capaxit.imagegenerator.TextImage;
-import nl.jamiecraane.imagegenerator.imageexporter.ImageWriter;
+import org.capaxit.imagegenerator.imageexporter.ImageWriter;
 import nl.jamiecraane.imagegenerator.impl.TextImageImpl;
-import nl.jamiecraane.imagegenerator.utils.Validate;
+import org.capaxit.imagegenerator.util.Validate;
 
 import javax.imageio.ImageIO;
 import java.io.File;

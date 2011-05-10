@@ -1,7 +1,7 @@
-package nl.jamiecraane.imagegenerator.imageexporter;
+package org.capaxit.imagegenerator.imageexporter;
 
-import nl.jamiecraane.imagegenerator.imageexporter.impl.JpegImageWriter;
-import nl.jamiecraane.imagegenerator.imageexporter.impl.PngImageWriter;
+import org.capaxit.imagegenerator.imageexporter.exporters.JpegImageWriter;
+import org.capaxit.imagegenerator.imageexporter.exporters.PngImageWriter;
 
 /**
  * Factory which creates an ImageWriter based on the ImageType.
