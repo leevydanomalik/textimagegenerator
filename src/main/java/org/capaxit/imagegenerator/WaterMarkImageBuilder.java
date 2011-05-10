@@ -1,8 +1,8 @@
-package nl.jamiecraane.imagegenerator;
-
-import java.awt.image.BufferedImage;
+package org.capaxit.imagegenerator;
 
 import nl.jamiecraane.imagegenerator.impl.TextImageImpl;
+
+import java.awt.image.BufferedImage;
 
 /**
  * Builder for creating image instances with a watermark.

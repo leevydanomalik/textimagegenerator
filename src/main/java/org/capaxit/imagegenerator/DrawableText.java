@@ -1,4 +1,4 @@
-package nl.jamiecraane.imagegenerator;
+package org.capaxit.imagegenerator;
 
 /**
  * (Immutable) represents text to draw on the given xpos.

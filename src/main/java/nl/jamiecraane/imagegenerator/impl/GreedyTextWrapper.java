@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import nl.jamiecraane.imagegenerator.TextWrapper;
+import org.capaxit.imagegenerator.TextWrapper;
 
 /**
  * This class uses a greedy based text wrapping algorithm which uses all
@@ -16,7 +16,7 @@ public final class GreedyTextWrapper implements TextWrapper {
     private static final char CSPACE = ' ';
 
     /**
-     * @see TextWrapper#doWrap(String, int, FontMetrics)
+     * @see org.capaxit.imagegenerator.TextWrapper#doWrap(String, int, FontMetrics)
      */
     public List<String> doWrap(final String text, final int lineWidth, final FontMetrics fm) {
         List<String> lines = new ArrayList<String>();

@@ -1,11 +1,10 @@
 package nl.jamiecraane.imagegenerator.impl;
 
-import nl.jamiecraane.imagegenerator.Align;
-import nl.jamiecraane.imagegenerator.DrawableText;
+import org.capaxit.imagegenerator.Align;
+import org.capaxit.imagegenerator.DrawableText;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 import java.awt.*;
 
 /**
