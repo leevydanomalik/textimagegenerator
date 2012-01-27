@@ -26,14 +26,14 @@ public class TextWrap {
 				"/nl/jamiecraane/imagegenerator/examples/fonts/cour.ttf");
         Font usedFont = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(11.0f);
 
-        textImage.useTextWrapper(new GreedyTextWrapper());
+        textImage.useTextWrapper(GreedyTextWrapper.createWithDefaultSplitPoints());
         textImage.setTextAligment(Alignment.LEFT);
         textImage.useFont(usedFont);
 
         textImage
 				.wrap(true)
                 .write(
-						"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever sinze the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.").newLine();
+						"Lorem Ipsum is simply dummy text of the printing and typesetting-industry. Lorem Ipsum has been the industry's standard dummy text ever sinze the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.").newLine();
 
         textImage
 				.setTextAligment(Alignment.RIGHT)
